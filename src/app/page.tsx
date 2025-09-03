@@ -1,103 +1,193 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
+import Image from 'next/image';
+
+export default function QuizPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-100">
+      {/* Top Bar */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0 flex justify-center md:justify-start">
+              <Image
+                src="/previna.svg" // Substitua pelo caminho do seu logo
+                alt="Logo"
+                width={60}
+                height={20}
+                className="h-10 w-auto"
+              />
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <a href="/policies" className="text-gray-600 hover:text-gray-900">Políticas</a>
+              <a href="/blog" className="text-gray-600 hover:text-gray-900">Blog</a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-600 hover:text-gray-900 focus:outline-none"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/policies" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Políticas</a>
+                <a href="/blog" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Blog</a>
+              </div>
+            </div>
+          )}
         </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section className="text-center">
+          {/* Main Title */}
+          <h1
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#181818] to-[#404242] text-transparent bg-clip-text"
+            style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}
+          >
+            Inicie Seu Quiz de Saúde
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+            
+          </p>
+
+          {/* Quiz Card */}
+          <div className="mt-8 max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-semibold text-gray-800">
+              Descubra o que seus sintomas podem indicar
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Responda algumas perguntas rápidas e receba uma estimativa de risco para diferentes ISTs.
+            </p>
+            <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+              Começar Agora
+            </button>
+          </div>
+        </section>
+
+        <section className="mt-12 max-w-3xl mx-auto">
+          {/* Título */}
+          <h1
+            className="text-center text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#181818] to-[#404242] text-transparent bg-clip-text mb-8"
+            style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}
+          >
+            Quizzes de Diagnóstico Específico
+          </h1>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Card 1: Herpes Genital */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Herpes Genital?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Herpes Genital.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 2: Clamídia */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Clamídia?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Clamídia.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 3: Tricomoníase */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Tricomoníase?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Tricomoníase.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 4: Gonorreia */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Gonorreia?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Gonorreia.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 5: HIV/AIDS */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com HIV/AIDS?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com HIV/AIDS.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 6: HPV */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com HPV?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com HPV.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 7: Sífilis */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Sífilis?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Sífilis.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
