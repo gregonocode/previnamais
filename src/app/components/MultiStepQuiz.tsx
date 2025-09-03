@@ -1,5 +1,3 @@
-// codigo exemplo instalei npm install react-hook-form framer-motion
-
 "use client";
 
 import { useState } from "react";
@@ -52,9 +50,10 @@ export default function MultiStepQuiz({
     return "BAIXA";
   }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Record<string, string>) => {
     const score = Object.entries(data).reduce((acc, [_k, v]) => {
-      const q = questions.find((qq) => qq.id === _k)!;
+      const q = questions.find((qq) => qq.id === _k);
+      if (!q) return acc; // Evita erro se a pergunta não for encontrada
       const ans = q.answers.find((a) => a.id === v);
       return acc + (ans ? ans.score : 0);
     }, 0);
