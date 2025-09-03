@@ -45,7 +45,7 @@ export default function QuizPage() {
           {isMenuOpen && (
             <div className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/policies" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Políticas</a>
+                <a href="/politica" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Políticas</a>
                 <a href="/blog" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Blog</a>
               </div>
             </div>
@@ -67,7 +67,6 @@ export default function QuizPage() {
           {/* Subtitle */}
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-            
           </p>
 
           {/* Quiz Card */}
@@ -180,6 +179,19 @@ export default function QuizPage() {
               </h2>
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Sífilis.
+              </p>
+              <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+                Iniciar Quiz
+              </button>
+            </div>
+
+            {/* Card 8: Hepatites Virais */}
+            <div className="bg-white rounded-lg shadow-md p-6 text-center">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Estou com Hepatites Virais?
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Responda algumas perguntas e descubra a probabilidade de estar com Hepatites Virais.
               </p>
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
