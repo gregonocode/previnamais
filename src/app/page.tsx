@@ -208,7 +208,7 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Hepatites Virais.
               </p>
-              <Link href="/quiz/hepatite">"
+              <Link href="/quiz/hepatites">"
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
