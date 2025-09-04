@@ -107,7 +107,7 @@ export default function BlogPage() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex justify-center md:justify-start">
-              <Link href="/">"
+              <Link href="/">
               <Image
                 src="/previna.svg"
                 alt="Previna Mais BV Logo"
