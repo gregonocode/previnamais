@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
 import MultiStepQuiz from '@/app/components/MultiStepQuiz';
+import Link from "next/link";
 
 const TRICHOMONIASIS_QUESTIONS = [
   {
@@ -114,6 +115,7 @@ export default function TrichomoniasisQuizPage() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex justify-center md:justify-start">
+              <Link href="/">
               <Image
                 src="/previna.svg"
                 alt="Logo"
@@ -121,6 +123,7 @@ export default function TrichomoniasisQuizPage() {
                 height={20}
                 className="h-10 w-auto"
               />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}

@@ -3,6 +3,8 @@
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
 
 // Interface para os dados do card
 interface BlogCardProps {
@@ -105,6 +107,7 @@ export default function BlogPage() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex justify-center md:justify-start">
+              <Link href="/">"
               <Image
                 src="/previna.svg"
                 alt="Previna Mais BV Logo"
@@ -112,6 +115,7 @@ export default function BlogPage() {
                 height={20}
                 className="h-10 w-auto"
               />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
