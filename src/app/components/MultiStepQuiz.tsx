@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { motion } from "framer-motion";
 
 type Answer = { id: string; label: string; score: number };
@@ -43,6 +43,14 @@ export default function MultiStepQuiz({
   });
   const [result, setResult] = useState<{ level: string; score: number } | null>(null);
 
+  // Assiste mudanças globais, só para re-renderizar
+  useWatch({ control });
+
+  const nextDisabled = () => {
+    const current = getValues(questions[step].id);
+    return !current; // Só libera se a questão atual tiver resposta
+  };
+
   function classify(totalScore: number) {
     if (totalScore >= 6) return "ALTA";
     if (totalScore >= 3) return "MÉDIA";
@@ -60,11 +68,6 @@ export default function MultiStepQuiz({
     const res = { level, score };
     setResult(res);
     if (onFinish) onFinish(res);
-  };
-
-  const nextDisabled = () => {
-    const val = getValues(questions[step].id);
-    return !val;
   };
 
   return (
