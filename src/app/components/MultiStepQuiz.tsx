@@ -2,29 +2,28 @@
 
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 type Answer = { id: string; label: string; score: number };
-type Question = { id: string; text: string; image?: string; answers: Answer[] };
+type Question = { id: string; text: string; answers: Answer[] };
 
 const QUESTIONS: Question[] = [
   {
     id: "q1",
     text: "Teve relação sem preservativo nos últimos 90 dias?",
-    image: "/images/q1.jpg",
     answers: [
       { id: "a1", label: "Sim", score: 2 },
       { id: "a2", label: "Não", score: 0 },
+      { id: "a3", label: "Não sei responder", score: 1 },
     ],
   },
   {
     id: "q2",
     text: "Notou ferida indolor na região genital/oral?",
-    image: "/images/q2.jpg",
     answers: [
       { id: "a1", label: "Sim", score: 3 },
       { id: "a2", label: "Não", score: 0 },
+      { id: "a3", label: "Não sei responder", score: 1 },
     ],
   },
   // adicione mais perguntas...
@@ -53,7 +52,7 @@ export default function MultiStepQuiz({
   const onSubmit = (data: Record<string, string>) => {
     const score = Object.entries(data).reduce((acc, [_k, v]) => {
       const q = questions.find((qq) => qq.id === _k);
-      if (!q) return acc; // Evita erro se a pergunta não for encontrada
+      if (!q) return acc;
       const ans = q.answers.find((a) => a.id === v);
       return acc + (ans ? ans.score : 0);
     }, 0);
@@ -83,7 +82,7 @@ export default function MultiStepQuiz({
               </div>
               <div className="w-full h-2 bg-gray-200 rounded">
                 <div
-                  className="h-2 rounded bg-sky-500"
+                  className="h-2 rounded bg-[#25E8BB]"
                   style={{ width: `${((step + 1) / total) * 100}%` }}
                 />
               </div>
@@ -96,18 +95,7 @@ export default function MultiStepQuiz({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
             >
-              {questions[step].image && (
-                <div className="mb-4 w-full h-48 relative rounded overflow-hidden">
-                  <Image
-                    src={questions[step].image}
-                    alt={`Ilustração - pergunta ${step + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              )}
-
-              <h3 className="text-lg font-semibold mb-3">{questions[step].text}</h3>
+              <h3 className="text-3xl font-bold mb-4 text-center">{questions[step].text}</h3>
 
               <Controller
                 control={control}
@@ -118,7 +106,7 @@ export default function MultiStepQuiz({
                       <label
                         key={a.id}
                         className={`flex items-center gap-3 p-3 border rounded mb-2 cursor-pointer hover:bg-gray-50 ${
-                          field.value === a.id ? "border-sky-500 bg-sky-50" : "border-gray-200"
+                          field.value === a.id ? "border-[#25E8BB] bg-[#25E8BB]/10" : "border-gray-200"
                         }`}
                       >
                         <input
@@ -127,7 +115,7 @@ export default function MultiStepQuiz({
                           value={a.id}
                           checked={field.value === a.id}
                           onChange={() => field.onChange(a.id)}
-                          className="accent-sky-500"
+                          className="accent-[#25E8BB]"
                         />
                         <span>{a.label}</span>
                       </label>
@@ -154,14 +142,14 @@ export default function MultiStepQuiz({
                 type="button"
                 onClick={() => setStep((s) => Math.min(total - 1, s + 1))}
                 disabled={nextDisabled()}
-                className="px-4 py-2 rounded bg-sky-600 text-white disabled:opacity-50"
+                className="px-4 py-2 rounded bg-[#25E8BB] text-white disabled:opacity-50"
               >
                 Próxima
               </button>
             ) : (
               <button
                 type="submit"
-                className="px-4 py-2 rounded bg-emerald-600 text-white"
+                className="px-4 py-2 rounded bg-[#25E8BB] text-white"
               >
                 Finalizar
               </button>
@@ -186,7 +174,7 @@ export default function MultiStepQuiz({
               Refazer
             </button>
             <button
-              className="px-4 py-2 rounded bg-sky-600 text-white"
+              className="px-4 py-2 rounded bg-[#25E8BB] text-white"
               onClick={() => {
                 /* aqui você pode disparar a geolocalização / rota pra posto */
               }}
