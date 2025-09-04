@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import MultiStepQuiz from '@/app/components/MultiStepQuiz';
 
-const CHLAMYDIA_QUESTIONS = [
+const HEPATITIS_QUESTIONS = [
   {
     id: "q1",
     text: "Você teve relação sexual sem preservativo nos últimos 90 dias?",
@@ -17,7 +17,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q2",
-    text: "Você notou corrimento anormal (amarelado, purulento ou com odor) na região genital?",
+    text: "Você compartilhou agulhas, seringas ou outros objetos perfurantes (como equipamentos de tatuagem ou piercing)?",
     answers: [
       { id: "a1", label: "Sim", score: 3 },
       { id: "a2", label: "Não", score: 0 },
@@ -26,7 +26,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q3",
-    text: "Você sentiu dor ou ardor ao urinar recentemente?",
+    text: "Você notou amarelecimento da pele ou dos olhos (icterícia)?",
     answers: [
       { id: "a1", label: "Sim", score: 3 },
       { id: "a2", label: "Não", score: 0 },
@@ -35,7 +35,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q4",
-    text: "Você teve contato sexual com alguém que foi diagnosticado com clamídia?",
+    text: "Você teve contato com alguém que foi diagnosticado com hepatite viral (A, B ou C)?",
     answers: [
       { id: "a1", label: "Sim", score: 3 },
       { id: "a2", label: "Não", score: 0 },
@@ -53,7 +53,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q6",
-    text: "Você sentiu dor na região pélvica ou abdominal (especialmente em mulheres)?",
+    text: "Você sentiu fadiga extrema, náusea ou perda de apetite recentemente?",
     answers: [
       { id: "a1", label: "Sim", score: 2 },
       { id: "a2", label: "Não", score: 0 },
@@ -62,7 +62,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q7",
-    text: "Você notou dor ou inchaço nos testículos (para homens)?",
+    text: "Você recebeu transfusão de sangue ou derivados antes de 1990 ou em condições não seguras?",
     answers: [
       { id: "a1", label: "Sim", score: 2 },
       { id: "a2", label: "Não", score: 0 },
@@ -80,7 +80,7 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q9",
-    text: "Você notou sangramento vaginal entre períodos menstruais ou após relações sexuais (para mulheres)?",
+    text: "Você notou urina escura ou fezes claras recentemente?",
     answers: [
       { id: "a1", label: "Sim", score: 2 },
       { id: "a2", label: "Não", score: 0 },
@@ -89,16 +89,16 @@ const CHLAMYDIA_QUESTIONS = [
   },
   {
     id: "q10",
-    text: "Você sentiu dor durante ou após relações sexuais recentemente?",
+    text: "Você já foi vacinado contra hepatite A ou B?",
     answers: [
-      { id: "a1", label: "Sim", score: 2 },
-      { id: "a2", label: "Não", score: 0 },
+      { id: "a1", label: "Sim", score: 0 },
+      { id: "a2", label: "Não", score: 2 },
       { id: "a3", label: "Não sei responder", score: 1 },
     ],
   },
 ];
 
-export default function ChlamydiaQuizPage() {
+export default function HepatitisQuizPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleQuizFinish = (result: { level: string; score: number }) => {
@@ -155,9 +155,9 @@ export default function ChlamydiaQuizPage() {
       {/* Quiz Content */}
       <main className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-center mb-6">Quiz de Avaliação de Risco para Clamídia</h1>
+          <h1 className="text-3xl font-bold text-center mb-6">Quiz de Avaliação de Risco para Hepatites Virais</h1>
           <MultiStepQuiz
-            questions={CHLAMYDIA_QUESTIONS}
+            questions={HEPATITIS_QUESTIONS}
             onFinish={handleQuizFinish}
           />
         </div>

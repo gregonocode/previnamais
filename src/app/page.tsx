@@ -103,9 +103,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Herpes Genital.
               </p>
+              <Link href="/quiz/herpes">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 2: Clamídia */}
@@ -116,9 +118,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Clamídia.
               </p>
+              <Link href="/quiz/clamidia">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 3: Tricomoníase */}
@@ -129,9 +133,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Tricomoníase.
               </p>
+              <Link href="/quiz/tricomoniase">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 4: Gonorreia */}
@@ -142,9 +148,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Gonorreia.
               </p>
+              <Link href="/quiz/gonorreia">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 5: HIV/AIDS */}
@@ -155,9 +163,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com HIV/AIDS.
               </p>
+              <Link href="/quiz/hiv">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 6: HPV */}
@@ -168,9 +178,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com HPV.
               </p>
+              <Link href="/quiz/hpv">
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
 
             {/* Card 7: Sífilis */}
@@ -196,9 +208,11 @@ export default function QuizPage() {
               <p className="mt-2 text-gray-600">
                 Responda algumas perguntas e descubra a probabilidade de estar com Hepatites Virais.
               </p>
+              <Link href="/quiz/hepatite">"
               <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
                 Iniciar Quiz
               </button>
+              </Link>
             </div>
           </div>
         </section>
