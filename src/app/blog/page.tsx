@@ -5,17 +5,17 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-
 // Interface para os dados do card
 interface BlogCardProps {
   title: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
+  href: string;
 }
 
 // Componente reutilizável para os cards
-function BlogCard({ title, description, imageSrc, imageAlt }: BlogCardProps) {
+function BlogCard({ title, description, imageSrc, imageAlt, href }: BlogCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 text-center">
       <div className="mb-4">
@@ -29,9 +29,11 @@ function BlogCard({ title, description, imageSrc, imageAlt }: BlogCardProps) {
       </div>
       <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
       <p className="mt-2 text-gray-600">{description}</p>
-      <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
-        Ler Mais
-      </button>
+      <Link href={href}>
+        <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
+          Ler Mais
+        </button>
+      </Link>
     </div>
   );
 }
@@ -39,7 +41,7 @@ function BlogCard({ title, description, imageSrc, imageAlt }: BlogCardProps) {
 export default function BlogPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Dados dos cards
+  // Dados dos cards com os caminhos dos artigos
   const blogPosts: BlogCardProps[] = [
     {
       title: "Quais os Sintomas do HIV?",
@@ -47,6 +49,7 @@ export default function BlogPage() {
         "Os primeiros sintomas do HIV incluem febre, mal-estar, dor de cabeça e inchaço nos gânglios, semelhantes a uma gripe. Muitos casos são assintomáticos, por isso testes regulares são essenciais.",
       imageSrc: "/placeholder-hiv.png",
       imageAlt: "Sintomas do HIV",
+      href: "/blog/sintomas-hiv",
     },
     {
       title: "Quais os Sintomas da Sífilis?",
@@ -54,6 +57,7 @@ export default function BlogPage() {
         "A sífilis apresenta feridas indolores na fase primária, manchas na pele na secundária e pode levar a complicações graves se não tratada. Consulte um médico ao notar sintomas.",
       imageSrc: "/placeholder-sifilis.png",
       imageAlt: "Sintomas da Sífilis",
+      href: "/blog/sintomas-da-sifilis",
     },
     {
       title: "Como Prevenir a Clamídia?",
@@ -61,6 +65,7 @@ export default function BlogPage() {
         "Previna a clamídia usando preservativos em todas as relações sexuais e realizando testes regulares, especialmente se houver múltiplos parceiros. O tratamento é com antibióticos.",
       imageSrc: "/placeholder-clamidia.png",
       imageAlt: "Prevenção da Clamídia",
+      href: "/blog/como-previnir-a-clamidia",
     },
     {
       title: "Vacina contra HPV: Por Que Tomar?",
@@ -68,6 +73,7 @@ export default function BlogPage() {
         "A vacina contra HPV protege contra tipos que causam verrugas genitais e cânceres. No Brasil, é dose única para 9-14 anos, gratuita no SUS. Vacine-se para prevenir.",
       imageSrc: "/placeholder-hpv.png",
       imageAlt: "Vacina contra HPV",
+      href: "/blog/vacina-contra-hpv",
     },
     {
       title: "Tratamento da Gonorreia",
@@ -75,6 +81,7 @@ export default function BlogPage() {
         "O tratamento da gonorreia envolve antibióticos como ceftriaxona e azitromicina. É essencial tratar parceiros para evitar reinfecção e complicações.",
       imageSrc: "/placeholder-gonorreia.png",
       imageAlt: "Tratamento da Gonorreia",
+      href: "/blog/tratamento-da-gonorreia",
     },
     {
       title: "Hepatites Virais: Tipos e Prevenção",
@@ -82,6 +89,7 @@ export default function BlogPage() {
         "Hepatites A, B, C, D, E: previna com vacinas (A,B), higiene, sexo seguro e evitando compartilhamento de agulhas. Testes regulares são cruciais.",
       imageSrc: "/placeholder-hepatites.png",
       imageAlt: "Hepatites Virais",
+      href: "/blog/hepatites-virais",
     },
     {
       title: "Mitos sobre ISTs",
@@ -89,6 +97,7 @@ export default function BlogPage() {
         "Desvende mitos como &quot;ISTs só afetam certas pessoas&quot; ou &quot;sem sintomas, não há infecção&quot;. Qualquer um pode contrair ISTs; testes são essenciais.",
       imageSrc: "/placeholder-mitos-ists.png",
       imageAlt: "Mitos sobre ISTs",
+      href: "/blog/mitos-sobre-ists",
     },
     {
       title: "Importância dos Testes Regulares para ISTs",
@@ -96,6 +105,7 @@ export default function BlogPage() {
         "Testes regulares detectam ISTs assintomáticas, permitem tratamento precoce, previnem complicações e interrompem a transmissão.",
       imageSrc: "/placeholder-testes-ists.png",
       imageAlt: "Importância dos Testes Regulares",
+      href: "/blog/importancia-dos-teste-para-ists",
     },
   ];
 
@@ -193,6 +203,7 @@ export default function BlogPage() {
                 description={post.description}
                 imageSrc={post.imageSrc}
                 imageAlt={post.imageAlt}
+                href={post.href}
               />
             ))}
           </div>
