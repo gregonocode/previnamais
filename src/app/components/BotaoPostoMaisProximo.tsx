@@ -2,6 +2,10 @@
 
 import { useCallback } from "react";
 
+interface NavigatorStandalone extends Navigator {
+  standalone?: boolean; // Safari iOS expõe essa flag em PWAs
+}
+
 export default function BotaoPostoMaisProximo() {
   const abrirLista = useCallback(() => {
     const consent = confirm(
@@ -14,10 +18,10 @@ export default function BotaoPostoMaisProximo() {
     const termoEnc = encodeURIComponent(termo);
 
     // Detecta PWA (standalone)
+    const nav = navigator as NavigatorStandalone;
     const isStandalone =
       window.matchMedia?.("(display-mode: standalone)")?.matches ||
-      // iOS legacy PWA flag:
-      (typeof (navigator as any).standalone !== "undefined" && (navigator as any).standalone === true);
+      nav.standalone === true;
 
     // Plataforma
     const ua = navigator.userAgent;
@@ -48,31 +52,28 @@ export default function BotaoPostoMaisProximo() {
         const { latitude, longitude } = pos.coords;
 
         if (isAndroid) {
-          // Tenta abrir o app com geo: (lista por query ao redor)
           const geoUrl = `geo:${latitude},${longitude}?q=${encodeURIComponent(termo)}`;
           openExternal(geoUrl);
 
-          // Plano B: se o SO não tratar geo:, também tenta Web focado na região
+          // Plano B: se não abrir, cai pro web
           setTimeout(() => {
-            // Só como segurança; muitos Androids já abrem o app do Maps
             openExternal(`https://www.google.com/maps/search/${termoEnc}/@${latitude},${longitude},15z`);
-          }, 300); // pequeno atraso
+          }, 300);
           return;
         }
 
         if (isIOS) {
-          // Apple Maps com pins próximos
           const appleUrl = `maps://?ll=${latitude},${longitude}&q=${termoEnc}`;
           openExternal(appleUrl);
 
-          // Plano B pro Safari (se maps:// não abrir, geralmente abre)
+          // Plano B
           setTimeout(() => {
             openExternal(`http://maps.apple.com/?ll=${latitude},${longitude}&q=${termoEnc}`);
           }, 300);
           return;
         }
 
-        // Desktop / outros: Google Maps Web focado nas coords
+        // Desktop / outros
         openExternal(`https://www.google.com/maps/search/${termoEnc}/@${latitude},${longitude},15z`);
       },
       () => {
