@@ -10,15 +10,18 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
     const preWin = window.open("", "_blank", "noopener,noreferrer");
 
     const closeIfOpen = () => {
-      try { preWin?.close(); } catch {}
+      try {
+        preWin?.close();
+      } catch {
+        /* ignore */
+      }
     };
 
     const consent = confirm(
       "Para encontrar o posto de saúde mais próximo, precisamos acessar sua localização. " +
-      "Sua localização não será armazenada. Deseja permitir?"
+        "Sua localização não será armazenada. Deseja permitir?"
     );
     if (!consent) {
-      // Usuário recusou: fecha a aba pré-aberta
       closeIfOpen();
       return;
     }
@@ -35,7 +38,6 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
       if (preWin && !preWin.closed) {
         preWin.location.href = url; // usa a aba pré-aberta
       } else {
-        // Se por algum motivo não deu pra pré-abrir, navega na mesma aba
         window.location.href = url;
       }
     };
@@ -47,7 +49,7 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
     const ua = navigator.userAgent;
     const isIOS =
       /iPad|iPhone|iPod/.test(ua) ||
-      (navigator.platform === "MacIntel" && (navigator as any).maxTouchPoints > 1);
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
     if (!("geolocation" in navigator)) {
       fallback();
@@ -61,9 +63,14 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
         if (isIOS) {
           // Apple Maps
           const modoApple =
-            modo === "walking" ? "w" :
-            modo === "transit"  ? "r" :
-            modo === "bicycling" ? "w" : "d";
+            modo === "walking"
+              ? "w"
+              : modo === "transit"
+              ? "r"
+              : modo === "bicycling"
+              ? "w"
+              : "d";
+
           const appleUrl = `http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${destino}&dirflg=${modoApple}`;
           go(appleUrl);
         } else {
