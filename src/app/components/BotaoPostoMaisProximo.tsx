@@ -75,7 +75,7 @@ export default function BotaoPostoMaisProximo() {
     }
 
     // Se o getCurrentPosition demorar, ainda tentamos o fallback genérico depois de X ms
-    let fallbackTimer = window.setTimeout(webGeneric, 5000);
+    const fallbackTimer = window.setTimeout(webGeneric, 5000);
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
