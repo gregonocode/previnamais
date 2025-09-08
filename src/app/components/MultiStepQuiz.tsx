@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { motion } from "framer-motion";
+import BotaoPostoMaisProximo from "./BotaoPostoMaisProximo";
 
 type Answer = { id: string; label: string; score: number };
 type Question = { id: string; text: string; answers: Answer[] };
@@ -176,14 +177,7 @@ export default function MultiStepQuiz({
             >
               Refazer
             </button>
-            <button
-              className="px-4 py-2 rounded bg-[#25E8BB] text-white"
-              onClick={() => {
-                /* aqui você pode disparar a geolocalização / rota pra posto */
-              }}
-            >
-              Encontrar posto mais próximo
-            </button>
+            <BotaoPostoMaisProximo />
           </div>
         </div>
       )}
