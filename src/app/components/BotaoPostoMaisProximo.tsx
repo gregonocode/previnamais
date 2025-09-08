@@ -2,10 +2,8 @@
 
 import { useCallback } from "react";
 
-type TravelMode = "driving" | "walking" | "transit" | "bicycling"; // mantido se você quiser um botão futuro "Traçar rota"
-
-export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: TravelMode }) {
-  const abrirMapaComLista = useCallback(() => {
+export default function BotaoPostoMaisProximo() {
+  const abrirLista = useCallback(() => {
     const consent = confirm(
       "Para mostrar os postos de saúde próximos, precisamos acessar sua localização. " +
       "Sua localização não será armazenada. Deseja permitir?"
@@ -15,20 +13,33 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
     const termo = "posto de saúde";
     const termoEnc = encodeURIComponent(termo);
 
-    // iOS (inclui iPadOS que se identifica como Mac)
+    // Detecta PWA (standalone)
+    const isStandalone =
+      window.matchMedia?.("(display-mode: standalone)")?.matches ||
+      // iOS legacy PWA flag:
+      (typeof (navigator as any).standalone !== "undefined" && (navigator as any).standalone === true);
+
+    // Plataforma
     const ua = navigator.userAgent;
     const isIOS =
       /iPad|iPhone|iPod/.test(ua) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(ua);
 
-    // Abrir na MESMA aba
-    const go = (url: string) => { window.location.href = url; };
+    // Abrir link (em PWA, preferir nova aba)
+    const openExternal = (url: string) => {
+      if (isStandalone) {
+        window.open(url, "_blank", "noopener,noreferrer");
+      } else {
+        window.location.href = url;
+      }
+    };
 
-    // Fallback sem GPS: pesquisa genérica
-    const fallback = () => go(`https://www.google.com/maps/search/?api=1&query=${termoEnc}+perto+de+mim`);
+    const webFallback = () =>
+      openExternal(`https://www.google.com/maps/search/?api=1&query=${termoEnc}+perto+de+mim`);
 
     if (!("geolocation" in navigator)) {
-      fallback();
+      webFallback();
       return;
     }
 
@@ -36,28 +47,44 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
       (pos) => {
         const { latitude, longitude } = pos.coords;
 
-        if (isIOS) {
-          // Apple Maps: lista próxima à coordenada
-          const appleSearchUrl = `http://maps.apple.com/?ll=${latitude},${longitude}&q=${termoEnc}`;
-          go(appleSearchUrl);
-        } else {
-          // Google Maps: página de busca com pins, centralizada nas coords
-          // O formato /search/<query>/@lat,lng,zoomz abre a lista no mapa
-          const zoom = 15; // ajuste se quiser mais/menos perto
-          const googleSearchUrl = `https://www.google.com/maps/search/${termoEnc}/@${latitude},${longitude},${zoom}z`;
-          go(googleSearchUrl);
+        if (isAndroid) {
+          // Tenta abrir o app com geo: (lista por query ao redor)
+          const geoUrl = `geo:${latitude},${longitude}?q=${encodeURIComponent(termo)}`;
+          openExternal(geoUrl);
+
+          // Plano B: se o SO não tratar geo:, também tenta Web focado na região
+          setTimeout(() => {
+            // Só como segurança; muitos Androids já abrem o app do Maps
+            openExternal(`https://www.google.com/maps/search/${termoEnc}/@${latitude},${longitude},15z`);
+          }, 300); // pequeno atraso
+          return;
         }
+
+        if (isIOS) {
+          // Apple Maps com pins próximos
+          const appleUrl = `maps://?ll=${latitude},${longitude}&q=${termoEnc}`;
+          openExternal(appleUrl);
+
+          // Plano B pro Safari (se maps:// não abrir, geralmente abre)
+          setTimeout(() => {
+            openExternal(`http://maps.apple.com/?ll=${latitude},${longitude}&q=${termoEnc}`);
+          }, 300);
+          return;
+        }
+
+        // Desktop / outros: Google Maps Web focado nas coords
+        openExternal(`https://www.google.com/maps/search/${termoEnc}/@${latitude},${longitude},15z`);
       },
       () => {
-        fallback();
+        webFallback();
       },
       { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
     );
-  }, [modo]);
+  }, []);
 
   return (
     <button
-      onClick={abrirMapaComLista}
+      onClick={abrirLista}
       className="px-4 py-2 rounded bg-[#25E8BB] text-white hover:bg-[#1ABA95] transition"
       aria-label="Mostrar postos de saúde próximos"
       title="Mostrar postos de saúde próximos"
