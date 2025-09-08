@@ -49,7 +49,7 @@ export default function QuizPage() {
           {isMenuOpen && (
             <div className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/politica" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Políticas</a>
+                <a href="/politicas" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Políticas</a>
                 <a href="/blog" className="block text-gray-600 hover:text-gray-900 px-3 py-2">Blog</a>
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function QuizPage() {
 
           {/* Subtitle */}
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+            Os quizzes são <strong> baseados em probabilidade.</strong> Nenhum deles substitui uma avaliação médica!. <br />
           </p>
 
           {/* Quiz Card */}
@@ -81,9 +81,11 @@ export default function QuizPage() {
             <p className="mt-2 text-gray-600">
               Responda algumas perguntas rápidas e receba uma estimativa de risco para diferentes ISTs.
             </p>
+            <Link href="/quiz/geral">
             <button className="mt-4 bg-[#25E8BB] text-white px-6 py-2 rounded-full hover:bg-[#1ABA95] transition">
               Começar Agora
             </button>
+            </Link>
           </div>
         </section>
 
