@@ -74,7 +74,7 @@ export default function QuaisOsSintomasEComoPrevenirAClamidia() {
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Sintomas da Clamídia</h2>
         <p className="text-gray-600 mb-4">
-          A clamídia é frequentemente chamada de "infecção silenciosa" porque muitas pessoas não apresentam sintomas. Quando os sintomas ocorrem, eles geralmente aparecem de 1 a 3 semanas após a exposição à bactéria. Os sintomas variam entre homens e mulheres:
+          A clamídia é frequentemente chamada de infecção silenciosa porque muitas pessoas não apresentam sintomas. Quando os sintomas ocorrem, eles geralmente aparecem de 1 a 3 semanas após a exposição à bactéria. Os sintomas variam entre homens e mulheres:
         </p>
 
         <h3 className="text-xl font-semibold text-gray-800 mb-2">Sintomas em Mulheres</h3>

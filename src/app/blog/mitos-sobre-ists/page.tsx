@@ -104,7 +104,7 @@ export default function MitosSobreISTs() {
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Mito 7: ISTs são sempre visíveis</h2>
         <p className="text-gray-600 mb-4">
-          <strong>Verdade:</strong> Nem todas as ISTs causam sinais visíveis, como feridas ou verrugas. Infecções como clamídia e hepatite C podem permanecer "invisíveis" por anos, causando danos silenciosos ao organismo. Exames laboratoriais são essenciais para detectar essas infecções.
+          <strong>Verdade:</strong> Nem todas as ISTs causam sinais visíveis, como feridas ou verrugas. Infecções como clamídia e hepatite C podem permanecer invisíveis por anos, causando danos silenciosos ao organismo. Exames laboratoriais são essenciais para detectar essas infecções.
         </p>
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Como Combater a Desinformação?</h2>
