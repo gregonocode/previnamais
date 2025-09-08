@@ -6,40 +6,19 @@ type TravelMode = "driving" | "walking" | "transit" | "bicycling";
 
 export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: TravelMode }) {
   const abrirRota = useCallback(() => {
-    // Pré-abre a aba/janela imediatamente para não ser bloqueada
-    const preWin = window.open("", "_blank", "noopener,noreferrer");
-
-    const closeIfOpen = () => {
-      try {
-        preWin?.close();
-      } catch {
-        /* ignore */
-      }
-    };
-
+    // Aviso (LGPD)
     const consent = confirm(
       "Para encontrar o posto de saúde mais próximo, precisamos acessar sua localização. " +
-        "Sua localização não será armazenada. Deseja permitir?"
+      "Sua localização não será armazenada. Deseja permitir?"
     );
-    if (!consent) {
-      closeIfOpen();
-      return;
-    }
-
-    // Mostra um placeholder enquanto resolve a localização
-    if (preWin && !preWin.closed) {
-      preWin.document.write("<p style='font-family:system-ui'>Abrindo o mapa...</p>");
-    }
+    if (!consent) return;
 
     const destinoTexto = "posto de saúde";
     const destino = encodeURIComponent(destinoTexto);
 
+    // Navega na MESMA aba (evita bloqueio e about:blank)
     const go = (url: string) => {
-      if (preWin && !preWin.closed) {
-        preWin.location.href = url; // usa a aba pré-aberta
-      } else {
-        window.location.href = url;
-      }
+      window.location.href = url;
     };
 
     const fallback = () =>
@@ -61,20 +40,16 @@ export default function BotaoPostoMaisProximo({ modo = "walking" }: { modo?: Tra
         const { latitude, longitude } = pos.coords;
 
         if (isIOS) {
-          // Apple Maps
+          // Apple Maps (app nativo do iOS)
           const modoApple =
-            modo === "walking"
-              ? "w"
-              : modo === "transit"
-              ? "r"
-              : modo === "bicycling"
-              ? "w"
-              : "d";
+            modo === "walking" ? "w" :
+            modo === "transit"  ? "r" :
+            modo === "bicycling" ? "w" : "d";
 
           const appleUrl = `http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${destino}&dirflg=${modoApple}`;
           go(appleUrl);
         } else {
-          // Google Maps
+          // Google Maps (web/app)
           const googleUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${destino}&travelmode=${modo}`;
           go(googleUrl);
         }
