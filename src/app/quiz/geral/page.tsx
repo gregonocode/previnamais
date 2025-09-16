@@ -50,6 +50,7 @@ const GENERAL_QUESTIONS = [
       { id: "a1", label: "Sim", scores: { hpv: 0, hiv: 0, gonorreia: 3, hepatites: 0, sifilis: 0, tricomoniase: 3, clamidia: 3, herpes: 0 } },
       { id: "a2", label: "Não", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
       { id: "a3", label: "Não sei responder", scores: { hpv: 0, hiv: 0, gonorreia: 1, hepatites: 0, sifilis: 0, tricomoniase: 1, clamidia: 1, herpes: 0 } },
+      { id: "a4", label: "Nenhuma das Alternativas", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
     ],
   },
   {
@@ -140,6 +141,7 @@ const GENERAL_QUESTIONS = [
       { id: "a1", label: "Sim", scores: { hpv: 0, hiv: 0, gonorreia: 3, hepatites: 0, sifilis: 0, tricomoniase: 2, clamidia: 3, herpes: 0 } },
       { id: "a2", label: "Não", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
       { id: "a3", label: "Não sei responder", scores: { hpv: 0, hiv: 0, gonorreia: 1, hepatites: 0, sifilis: 0, tricomoniase: 1, clamidia: 1, herpes: 0 } },
+      { id: "a4", label: "Nenhuma das Alternativas", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
     ],
   },
   {
@@ -212,6 +214,7 @@ const GENERAL_QUESTIONS = [
       { id: "a1", label: "Sim", scores: { hpv: 1, hiv: 0, gonorreia: 1, hepatites: 0, sifilis: 0, tricomoniase: 2, clamidia: 2, herpes: 0 } },
       { id: "a2", label: "Não", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
       { id: "a3", label: "Não sei responder", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 1, clamidia: 1, herpes: 0 } },
+      { id: "a4", label: "Nenhuma das Alternativas", scores: { hpv: 0, hiv: 0, gonorreia: 0, hepatites: 0, sifilis: 0, tricomoniase: 0, clamidia: 0, herpes: 0 } },
     ],
   },
   {

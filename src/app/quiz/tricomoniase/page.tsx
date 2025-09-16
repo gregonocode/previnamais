@@ -23,6 +23,7 @@ const TRICHOMONIASIS_QUESTIONS = [
       { id: "a1", label: "Sim", score: 3 },
       { id: "a2", label: "Não", score: 0 },
       { id: "a3", label: "Não sei responder", score: 1 },
+      { id: "a4", label: "Nenhuma das Alternativas", score: 0 },
     ],
   },
   {
@@ -86,6 +87,7 @@ const TRICHOMONIASIS_QUESTIONS = [
       { id: "a1", label: "Sim", score: 2 },
       { id: "a2", label: "Não", score: 0 },
       { id: "a3", label: "Não sei responder", score: 1 },
+      { id: "a4", label: "Nenhuma das Alternativas", score: 0 },
     ],
   },
   {
